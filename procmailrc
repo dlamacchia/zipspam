@@ -1,0 +1,12 @@
+# Check for zip trojans mark with X-Zip-Trojan
+:0 B
+* ^Content-Type: (application/x-compress|application/zip|multipart/x-zip|application/octet-stream|application/x-zip-compressed|application/x-zip);
+{
+    :0 fbhw
+    | /usr/local/bin/mime-zip-trojan.pl
+}
+
+# Move to spam if it has a trojan
+:0
+* ^X-Zip-Trojan: Yes
+spam
